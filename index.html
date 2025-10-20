@@ -4,7 +4,7 @@
   </head>
   <body>
     <table>
-      <thead><tr><th>At End Of</th></th><th>Total</th><th>Weekly Change</th></tr></thead>
+      <thead><tr><th>At End Of</th></th><th>Total</th><th>Change</th></tr></thead>
       <tbody id="table-body"></tbody>
     </table>
 
@@ -55,9 +55,12 @@
         const data = await response.json();
 
         tableBody.innerHTML = '';
+        let index = 0;
         data.forEach(row => {
-          tableBody.innerHTML += `<tr><td align='right'>${row["AtEndOf"]}</td><td align='right'>${row["Total"]}</td><td align='right'>${row["WeeklyChange"]}</td></tr>`;
-          prevTotal = row["Total"];
+          if (index > data.length - 10) {
+            tableBody.innerHTML += `<tr><td align='right'>${row["AtEndOf"]}</td><td align='right'>${row["Total"]}</td><td align='right'>${row["WeeklyChange"]}</td></tr>`;
+            prevTotal = row["Total"];
+          }
         }); //data.forEach
 
   // Prepare chart data
