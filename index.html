@@ -69,14 +69,14 @@
 
       entryForm.onsubmit = async (e) => {
         e.preventDefault();
-        const xAtEndOf = entryForm.atendof.value;
-        const xTotal = entryForm.total.value;
-        const xWeeklyChange = "99.99";
+        const AtEndOf = entryForm.atendof.value;
+        const Total = entryForm.total.value;
+        const WeeklyChange = "99.99";
 
         await fetch('https://sheetdb.io/api/v1/trac4zp5u8j95', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify([{ xAtEndOf, xTotal, xWeeklyChange }])
+          body: JSON.stringify([{ AtEndOf, Total, WeeklyChange }])
         }); //await fetch
 
         entryForm.reset();  // Clear form inputs
