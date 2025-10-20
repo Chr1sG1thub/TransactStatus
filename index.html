@@ -13,7 +13,7 @@
     <form id="entry-form">
  
       <label for="at-end-of">At End Of:</label>
-      <input type="text" id="at-end-of" name="at-end-of" required>
+      <input type="text" id="at-end-of" name="atendof" required>
 
       <label for="total">Total:</label>
       <input type="text" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*" id="total" name="total" required>
@@ -69,7 +69,7 @@
 
       entryForm.onsubmit = async (e) => {
         e.preventDefault();
-        const xAtEndOf = entryForm.at-end-of.value;
+        const xAtEndOf = entryForm.atendof.value;
         const xTotal = entryForm.total.value;
         const xWeeklyChange = 99.99;
 
