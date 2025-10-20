@@ -57,7 +57,7 @@
         tableBody.innerHTML = '';
         let index = 0;
         data.forEach(row => {
-          if (index > data.length - 10) {
+          if (index >= data.length - 10) {
             tableBody.innerHTML += `<tr><td align='right'>${row["AtEndOf"]}</td><td align='right'>${row["Total"]}</td><td align='right'>${row["WeeklyChange"]}</td></tr>`;
             prevTotal = row["Total"];
           }
