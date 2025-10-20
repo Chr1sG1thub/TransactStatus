@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>Transact Status</title>
+  </head>
+  <body>
+    <table>
+      <thead><tr><th>At End Of</th></th><th>Total</th><th>Weekly Change</th></tr></thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+    <h3>Add New Transact Entry</h3>
+
+    <form id="entry-form">
+ 
+      <label for="at-end-of">At End Of:</label>
+      <input type="text" id="at-end-of" name="at-end-of" required>
+
+      <label for="total">Total:</label>
+      <input type="text" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*" id="total" name="total" required>
+
+      <button type="submit">Submit</button>
+
+    </form>
+
+    <canvas id="line-chart"></canvas>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+  
+      const entryForm = document.getElementById('entry-form');
+      const tableBody = document.getElementById('table-body');
+      const lineChartCtx = document.getElementById('line-chart').getContext('2d');
+  
+      let chart; // Holds Chart.js instance
+
+      async function fetchDataAndUpdateUI() {
+        const response = await fetch('https://sheetdb.io/api/v1/trac4zp5u8j95');
+        const data = await response.json();
+
+        tableBody.innerHTML = '';
+        data.forEach(row => {
+          tableBody.innerHTML += `<tr><td>${row["At End Of"]}</td><td>${row["Total"]}</td><td>${row["Weekly Change"]}</td></tr>`;
+        }); //data.forEach
+
+  // Prepare chart data
+        const atEndOf = data.map(row => row["At End Of"]);
+        const total = data.map(row => row["Total"]);
+
+        if (chart) {
+          chart.data.labels = atEndOf;
+          chart.data.datasets[0].data = total;
+          chart.update();
+        } else {
+          chart = new Chart(lineChartCtx, {
+            type: 'line',
+            data: {
+              labels: atEndOf,
+              datasets: [{
+                label: 'Total',
+                data: total,
+                borderColor: 'green',
+                fill: false
+              }] //datasets
+            } //data
+          }); //new Chart
+        } //if (chart)
+      } //async function fetchDataAndUpdateUI
+
+      entryForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const xAtEndOf = entryForm.at-end-of.value;
+        const xTotal = entryForm.total.value;
+        const xWeeklyChange = 99.99;
+
+        await fetch('https://sheetdb.io/api/v1/trac4zp5u8j95', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify([{ xAtEndOf, xTotal, xWeeklyChange }])
+        }); //await fetch
+
+        form.reset();  // Clear form inputs
+    
+        fetchDataAndUpdateUI();  // Refresh table and chart
+    
+      }; //entryForm.onsubmit
+
+// Initial data load
+      fetchDataAndUpdateUI();
+  
+    </script>
+    
+  </body>
+  
+</html>
