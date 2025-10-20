@@ -27,7 +27,22 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-  
+
+      let today = new Date();
+      let yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+
+      let dd = yesterday.getDate();
+      let mm = yesterday.getMonth() + 1; // Months are zero-based
+      let yyyy = yesterday.getFullYear();
+
+      dd = dd < 10 ? '0' + dd : dd;
+      mm = mm < 10 ? '0' + mm : mm;
+
+      let formattedDate = dd + '/' + mm + '/' + yyyy;
+
+      document.getElementById('at-end-of').value = formattedDate;
+
       const entryForm = document.getElementById('entry-form');
       const tableBody = document.getElementById('table-body');
       const lineChartCtx = document.getElementById('line-chart').getContext('2d');
@@ -41,7 +56,7 @@
 
         tableBody.innerHTML = '';
         data.forEach(row => {
-          tableBody.innerHTML += `<tr><td>${row["AtEndOf"]}</td><td>${row["Total"]}</td><td>${row["WeeklyChange"]}</td></tr>`;
+          tableBody.innerHTML += `<tr><td align='right'>${row["AtEndOf"]}</td><td align='right'>${row["Total"]}</td><td align='right'>${row["WeeklyChange"]}</td></tr>`;
           prevTotal = row["Total"];
         }); //data.forEach
 
