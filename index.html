@@ -70,7 +70,7 @@
         data.forEach(row => {
           let rowColour = "green";
           if (index >= data.length - 10) {
-            if row["WeeklyChange"] < 0 {
+            if row.WeeklyChange < 0 {
               rowColour = "red";
             }
             tableBody.innerHTML += `<tr><td align='right'>${row["AtEndOf"]}</td><td align='right'>${row["Total"]}</td><td align='right' style='background-color: ${rowColour}'>${row["WeeklyChange"]}</td></tr>`;
