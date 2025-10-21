@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="everything" style="display:none;">
-      <table>
+      <table style="font-size: 30px;">
         <thead><tr><th>At End Of</th></th><th>Total</th><th>Change</th></tr></thead>
         <tbody id="table-body"></tbody>
     </table>
@@ -95,6 +95,8 @@
             } //data
           }); //new Chart
         } //if (chart)
+        document.getElementById("everything").style.display = 'block';
+
       } //async function fetchDataAndUpdateUI
 
       entryForm.onsubmit = async (e) => {
@@ -112,13 +114,11 @@
         entryForm.reset();  // Clear form inputs
     
         fetchDataAndUpdateUI();  // Refresh table and chart
-        //document.getElementById("everything").style.display = 'block';
      
       }; //entryForm.onsubmit
 
 // Initial data load
       fetchDataAndUpdateUI();
-      //document.getElementById("everything").style.display = 'block';
   
     </script>
     
