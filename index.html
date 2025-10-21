@@ -67,16 +67,16 @@
 
         tableBody.innerHTML = '';
         let index = 0;
-        data.forEach(row => {
+        data.forEach(myRow => {
           let rowColour = "green";
           if (index >= data.length - 10) {
-            if this.WeeklyChange < 0 {
+            if myRow.WeeklyChange < 0 {
               rowColour = "red";
             }
-            tableBody.innerHTML += `<tr><td align='right'>${row["AtEndOf"]}</td><td align='right'>${row["Total"]}</td><td align='right' style='background-color: ${rowColour}'>${row["WeeklyChange"]}</td></tr>`;
+            tableBody.innerHTML += `<tr><td align='right'>${myRow["AtEndOf"]}</td><td align='right'>${myRow["Total"]}</td><td align='right' style='background-color: ${rowColour}'>${myRow["WeeklyChange"]}</td></tr>`;
           }
           if (index == data.length - 1) {
-            prevTotal = row["Total"];
+            prevTotal = myRow["Total"];
           }
           index = index + 1;
         }); //data.forEach
