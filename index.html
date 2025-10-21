@@ -66,19 +66,19 @@
         const data = await response.json();
 
         tableBody.innerHTML = '';
-        let index = 0;
+        let indx = 0;
         data.forEach(myRow => {
           let rowColour = "green";
-          if (index >= data.length - 10) {
-            if myRow.WeeklyChange < 0 {
+          if (indx >= data.length - 10) {
+            if (myRow.WeeklyChange < 0) {
               rowColour = "red";
             }
             tableBody.innerHTML += `<tr><td align='right'>${myRow["AtEndOf"]}</td><td align='right'>${myRow["Total"]}</td><td align='right' style='background-color: ${rowColour}'>${myRow["WeeklyChange"]}</td></tr>`;
           }
-          if (index == data.length - 1) {
+          if (indx == data.length - 1) {
             prevTotal = myRow["Total"];
           }
-          index = index + 1;
+          indx = indx + 1;
         }); //data.forEach
 
   // Prepare chart data
