@@ -69,8 +69,8 @@
         let indx = 0;
         data.forEach(myRow => {
           let rowColour = "green";
-          if (indx >= data.length - 10) {
-            if (myRow.WeeklyChange < 0) {
+          if (indx == (data.length - 10)) {
+            if (myRow["WeeklyChange"] < 0) {
               rowColour = "red";
             }
             tableBody.innerHTML += `<tr><td align='right'>${myRow["AtEndOf"]}</td><td align='right'>${myRow["Total"]}</td><td align='right' style='background-color: ${rowColour}'>${myRow["WeeklyChange"]}</td></tr>`;
