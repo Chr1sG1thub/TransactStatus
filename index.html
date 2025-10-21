@@ -7,9 +7,10 @@
     </style>
   </head>
   <body>
-    <table id="values-table" style="display:none">
-      <thead><tr><th>At End Of</th></th><th>Total</th><th>Change</th></tr></thead>
-      <tbody id="table-body"></tbody>
+    <div id="everything" style="display:none;">
+      <table id="values-table" style="display:none">
+        <thead><tr><th>At End Of</th></th><th>Total</th><th>Change</th></tr></thead>
+        <tbody id="table-body"></tbody>
     </table>
 
     <h3>Add New Transact Entry</h3>
@@ -27,6 +28,8 @@
     </form>
 
     <canvas id="line-chart" width=80%></canvas>
+
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -109,12 +112,13 @@
         entryForm.reset();  // Clear form inputs
     
         fetchDataAndUpdateUI();  // Refresh table and chart
-    
+        document.getElementById("everything").style.display = 'block';
+     
       }; //entryForm.onsubmit
 
 // Initial data load
       fetchDataAndUpdateUI();
-      document.getElementById("values-table").style.display = 'block';
+      document.getElementById("everything").style.display = 'block';
   
     </script>
     
