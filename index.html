@@ -69,7 +69,7 @@
         let indx = 0;
         data.forEach(myRow => {
           let rowColour = "green";
-          if (indx == (data.length - 10)) {
+          if (indx >= (data.length - 10)) {
             if (myRow["WeeklyChange"] < 0) {
               rowColour = "red";
             }
