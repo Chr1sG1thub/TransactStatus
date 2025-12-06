@@ -1,6 +1,6 @@
 {
   "name": "Transact Status",
-  "short_name": "Transact",
+  "short_name": "TransactStat",
   "start_url": "/TransactStatus/",
   "display": "standalone",
   "background_color": "#ffffff",
